@@ -7,7 +7,7 @@ description: Create, test, or repair website adapters using ToolGraft MCP and th
 
 # Create website tools with your own agent
 
-Guide 0.6.0; protocol 1.
+Guide 0.6.1; protocol 1.
 
 ToolGraft supplies tools. Your existing agent asks questions, writes the adapter and fixes it. No ToolGraft AI subscription or model key is needed.
 

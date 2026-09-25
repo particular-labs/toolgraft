@@ -30,6 +30,31 @@ test("homepage demo, clipboard recovery, keyboard semantics, and responsive layo
     .all())
     await expect(link).toHaveAttribute("href", "./get-started.html");
   await expect(page.getByText("We're building")).toHaveCount(0);
+  const spec = `@particular-labs/toolgraft-mcp@${EXTENSION_VERSION}`;
+  await expect(page.locator("#extension-download")).toHaveAttribute(
+    "href",
+    `./toolgraft-${EXTENSION_VERSION}-chrome.zip`,
+  );
+  await expect(page.locator("#mcp-installs")).toContainText(
+    `claude mcp add --scope user toolgraft -- npx -y ${spec}`,
+  );
+  await expect(page.locator("#mcp-installs")).toContainText(
+    `codex mcp add toolgraft -- npx -y ${spec}`,
+  );
+  await page
+    .getByRole("button", { name: "Copy Codex setup", exact: true })
+    .click();
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
+    `codex mcp add toolgraft -- npx -y ${spec}`,
+  );
+  await page
+    .getByRole("button", { name: "Copy Cursor and others setup", exact: true })
+    .click();
+  expect(
+    JSON.parse(await page.evaluate(() => navigator.clipboard.readText())),
+  ).toEqual({
+    mcpServers: { toolgraft: { command: "npx", args: ["-y", spec] } },
+  });
   expect(errors).toEqual([]);
   for (const [name, width, height] of [
     ["desktop", 1440, 1000],

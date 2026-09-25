@@ -164,7 +164,19 @@
     .closing { padding: 130px 0 150px; border-top: 1px solid var(--line); text-align: center; }
     .closing h2 { font-size: clamp(3rem, 7vw, 7rem); line-height: .92; letter-spacing: -.07em; margin: 0 auto 30px; max-width: 1000px; }
     .closing p { color: var(--muted); max-width: 580px; margin: 0 auto 34px; font-size: 1.05rem; }
-    .actions.closing-actions { justify-content: center; }
+    .install { max-width: 760px; margin: 52px auto 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; text-align: left; }
+    .install-step, .install-row, .command { min-width: 0; }
+    .install-step h3 { font-size: 1.15rem; margin: 0 0 16px; letter-spacing: -.01em; }
+    .install-step h3 span { color: var(--green); font: 500 .8rem "DM Mono", monospace; margin-right: 12px; }
+    .closing .install-step p { margin: 14px 0 0; max-width: none; font-size: .92rem; }
+    .install-step p code { font: 400 .82rem "DM Mono", monospace; color: var(--paper-2); }
+    .install-row { display: grid; gap: 6px; margin-top: 12px; }
+    .install-row > span { font-size: .78rem; color: var(--marketing-muted); }
+    .command { border: 1px solid var(--line); display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 11px 12px 11px 16px; border-radius: 6px; background: #121413; }
+    .command code { color: var(--paper-2); font: 400 .78rem/1.55 "DM Mono", monospace; white-space: pre; overflow-x: auto; min-width: 0; padding: 4px 0; }
+    .copy { flex: none; border: 0; border-radius: 4px; padding: 8px 10px; cursor: pointer; background: #282c29; color: var(--paper); font-size: .72rem; }
+    .copy:hover { background: #343934; }
+    .closing .install-links { margin: 44px auto 0; font-size: .92rem; }
 
     footer { border-top: 1px solid var(--line); padding: 30px 0 36px; color: #747b73; }
     .footer-row { display: flex; justify-content: space-between; align-items: center; gap: 20px; font-size: .77rem; }
@@ -239,7 +251,7 @@
         <div class="hero-foot">
           <p class="hero-copy">ToolGraft lets your coding agent build reusable WebMCP tools for the websites you use, then call them in the browser session you're already signed in to. Free and open source.</p>
           <div class="actions">
-            <a class="button primary" href="./get-started.html">Get started</a>
+            <a class="button primary" href="#install">Install</a>
             <a class="button" href="#demo">Try the demo <span class="arrow">↘</span></a>
           </div>
         </div>
@@ -348,15 +360,23 @@
       </div>
     </section>
 
-    <section class="closing" id="start">
+    <section class="closing" id="install">
       <div class="wrap">
-        <h2>Try the<br>developer preview.</h2>
-        <p>One Chrome extension and one npm package for Claude Code, Codex, Cursor or any local MCP agent. No account, no model key.</p>
-        <div class="actions closing-actions">
-          <a class="button primary" href="./get-started.html">Get started</a>
-          <a class="button" href="https://github.com/particular-labs/toolgraft">GitHub</a>
-          <a class="button" href="https://www.npmjs.com/package/@particular-labs/toolgraft-mcp">npm</a>
+        <h2>Install in<br>two steps.</h2>
+        <p>One Chrome extension and one npm package for Claude Code, Codex, Cursor or any local MCP agent. Needs Chrome 138+ and Node 24+. No account, no model key.</p>
+        <div class="install">
+          <div class="install-step">
+            <h3><span>01</span>Add the extension</h3>
+            <a class="button primary" id="extension-download" href="./get-started.html">Download for Chrome</a>
+            <p>Unzip it, open <code>chrome://extensions</code>, turn on Developer mode, choose Load unpacked, then turn on Allow User Scripts in ToolGraft’s Details. Chrome Web Store listing coming soon.</p>
+          </div>
+          <div class="install-step">
+            <h3><span>02</span>Add the MCP to your agent</h3>
+            <div id="mcp-installs"><p>See <a href="./get-started.html">Get started</a> for your agent’s setup.</p></div>
+            <p>Then ask your agent: “Connect to ToolGraft.” Approve the connection in the extension.</p>
+          </div>
         </div>
+        <p class="install-links"><a href="./get-started.html">Full setup guide</a> · <a href="https://github.com/particular-labs/toolgraft">GitHub</a> · <a href="https://www.npmjs.com/package/@particular-labs/toolgraft-mcp">npm</a></p>
       </div>
     </section>
   </main>
@@ -472,6 +492,7 @@
     });
 
   </script>
+<script type="module" src="./home-install.ts"></script>
 <script type="module" src="./analytics.ts"></script>
   </body>
 </html>

@@ -9,7 +9,7 @@ import {
 z.config({ jitless: true });
 export { validateToolInput };
 export const ENGINE_VERSION = 1;
-export const EXTENSION_VERSION = "0.6.0";
+export const EXTENSION_VERSION = "0.6.1";
 export const INPUT_LIMIT = 64 * 1024,
   OUTPUT_LIMIT = 256 * 1024,
   ARCHIVE_LIMIT = 1024 * 1024;

@@ -1,7 +1,7 @@
 export const BRIDGE_PORT = 17834;
 export const PROTOCOL_VERSION = 1;
 export const SHARED_BRIDGE_PROTOCOL = 2;
-export const GUIDE_VERSION = "0.6.0";
+export const GUIDE_VERSION = "0.6.1";
 export const coreGuide = {
   title: "Create website tools with your own agent",
   intro:

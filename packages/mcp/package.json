@@ -1,6 +1,6 @@
 {
   "name": "@particular-labs/toolgraft-mcp",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Local agent tools for creating and using ToolGraft website adapters",
   "type": "module",
   "license": "MIT",

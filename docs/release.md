@@ -19,10 +19,10 @@ scripts, or permissions other than storage, alarms, activeTab, scripting and use
 This preview adds approved read-only browser trials, individual tool edits,
 targeted inspection, bounded approval waits and saved-draft recovery to the existing
 version lifecycle and multi-agent connection flow. Rebuild and use the matching 0.6.0 extension and MCP package; restart the agent
-connection after updating its package path. Shared product assets include only the
+connection after updating its pinned MCP version. Shared product assets include only the
 current MCP package. See [guided trials](guided-trials.md), [editing support](editing-adapters.md) and the
-[Store/beta and public-repo plan](beta-release-plan.md). No Store submission or
-public release has been made.
+[Store/beta and public-repo plan](beta-release-plan.md). The source, website and npm
+package are public as a developer preview; no Store submission has been made.
 
 Extension storage remains at schema 2; upgrades from schema 1 retain current
 packages during migration. Older extension builds cannot read schema 2. Keep original adapter archives or export needed

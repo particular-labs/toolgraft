@@ -2,6 +2,7 @@ import { test, expect, chromium } from "@playwright/test";
 import { resolve } from "node:path";
 import { analyticsConfig } from "../../packages/analytics/src/index";
 import { checkExtensionLayout } from "./layout";
+import { EXTENSION_VERSION } from "../../packages/adapter-schema/src/index";
 
 const publicSite = "https://particular-labs.github.io/toolgraft/";
 test("website sends only fixed fields and persists opt-out; privacy signals and previews suppress collection", async ({
@@ -61,7 +62,7 @@ test("website sends only fixed fields and persists opt-out; privacy signals and 
           website: analyticsConfig.website,
           hostname: "particular-labs.github.io",
           url: "/website/privacy",
-          data: { release: "0.6.0", surface: "website" },
+          data: { release: EXTENSION_VERSION, surface: "website" },
         },
       });
       await page
@@ -148,7 +149,7 @@ test("production extension requires opt-in, persists opt-out, suppresses private
           hostname: "toolgraft-extension",
           url: "/extension/options",
           name: "panel_opened",
-          data: { release: "0.6.0", surface: "extension" },
+          data: { release: EXTENSION_VERSION, surface: "extension" },
         },
       },
       credentials: "omit",

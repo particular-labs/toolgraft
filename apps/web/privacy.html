@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Privacy · ToolGraft</title>
+    <link rel="stylesheet" href="./docs.css" />
+    <link rel="stylesheet" href="/fonts.css" />
+    <link rel="stylesheet" href="/brand.css" />
+    <link rel="icon" href="/icon.svg" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header>
+      <a class="brand" href="./"
+        ><span class="brand-mark" aria-hidden="true"></span>ToolGraft</a
+      ><a href="./get-started.html">Get started</a>
+      <a href="./docs.html">Documentation</a>
+    </header>
+    <main>
+      <h1>Your tools. Your browser.</h1>
+      <p>
+        ToolGraft is a free, MIT-licensed project by Particular Labs. Updated
+        September 23, 2026.
+      </p>
+      <h2>Extension data stays local</h2>
+      <p>
+        Installed adapter packages, exact versions, hashes, site permissions,
+        safety lists, and diagnostics are stored in your browser. ToolGraft does
+        not collect browsing history, tool inputs, or results. Optional
+        extension analytics start off. It has no account system.
+      </p>
+      <h2>Your external agent</h2>
+      <p>
+        The paired local MCP receives inspected page content and tool results
+        and passes them to your chosen agent. Its model provider may process
+        that data under your agent settings. ToolGraft supplies no AI service.
+        Pairing credentials, authored source and exports stay on this computer;
+        the MCP stores them under <code>~/.toolgraft/</code>. Disconnect in the
+        extension to remove its pairing; delete the MCP data directory
+        separately to remove saved drafts and credentials.
+      </p>
+      <h2>Network access</h2>
+      <p>
+        Adapter API calls go directly to the declared site; they are not proxied
+        through ToolGraft. Registry requests happen during explicit install or
+        update checks and periodic safety-list refreshes. Normal page navigation
+        does not query the registry. Hosting providers may receive ordinary
+        request metadata when you visit the website or fetch the registry.
+      </p>
+      <h2>Script adapters are trusted code</h2>
+      <p>
+        An approved script adapter can access the sites you grant. ToolGraft
+        does not claim to sandbox that code from the page. Review the source,
+        tools, runtime, and permissions before installing. Write prompts prevent
+        accidental calls; a malicious adapter could bypass its SDK.
+      </p>
+      <h2>Removal</h2>
+      <p>
+        Removing an adapter deletes its install record and package and releases
+        site permissions no other installed adapter needs. Reload matching tabs
+        to clear existing page registrations. Removing the extension clears its
+        local store.
+      </p>
+      <h2>Website resources</h2>
+      <p>
+        Fonts are served with this website; no request to a third-party font
+        service is needed. The site includes no advertising. The interactive
+        mailbox is synthetic and does not read your email.
+      </p>
+      <h2>Minimal usage analytics</h2>
+      <p>
+        The public website sends fixed page names, setup and download actions,
+        and the ToolGraft release to Particular Labs’ self-hosted Umami server.
+        Website analytics are on by default; local previews send nothing. Use
+        the control below to opt out on this browser.
+      </p>
+      <div id="analytics-preference"></div>
+      <p>
+        Extension analytics are separate and off by default. In Manage adapters,
+        you can allow fixed panel, setup, approval and install actions, then
+        turn them off at any time. Do Not Track and Global Privacy Control
+        suppress both surfaces; extension private windows also suppress events.
+      </p>
+      <p>
+        We send no browsing URLs, query strings, fragments, referrers, page
+        content, search terms, adapter names or code, tool inputs/results, error
+        text, or persistent user identifier. We load no remote analytics script
+        and use no analytics cookies, session replay or advertising IDs.
+      </p>
+      <p>
+        Requests go to
+        <a href="https://umami.particularlabs.cloud"
+          >umami.particularlabs.cloud</a
+        >. Like any server, it receives your IP address and browser headers;
+        Umami can derive approximate location and browser information. Its
+        documentation says it does not store the IP itself. Proxy logs and
+        server retention have not yet been audited; no short retention period is
+        promised for this developer preview.
+      </p>
+      <h2>Security reports</h2>
+      <p>
+        Before public release, the repository must enable private vulnerability
+        reporting. Do not put credentials or private browsing data in public
+        issues. The project's security model and release gates are maintained
+        alongside the source.
+      </p>
+    </main>
+    <footer>
+      Particular Labs ·
+      <a class="brand" href="./"
+        ><span class="brand-mark" aria-hidden="true"></span>ToolGraft</a
+      >
+    </footer>
+    <script type="module" src="./analytics.ts"></script>
+  </body>
+</html>

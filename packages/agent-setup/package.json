@@ -1,0 +1,23 @@
+{
+  "name": "@toolgraft/agent-setup",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    "./help-ui": "./src/help-ui.ts",
+    "./help.css": "./src/help.css",
+    "./managed-ui": "./src/managed-ui.ts",
+    ".": "./src/index.ts",
+    "./ui": "./src/ui.ts",
+    "./style.css": "./src/style.css",
+    "./managed-config": "./src/managed-config.ts"
+  },
+  "dependencies": {
+    "@toolgraft/agent-core": "workspace:*",
+    "@toolgraft/analytics": "workspace:*"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  }
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Get started · ToolGraft</title>
+    <link rel="stylesheet" href="./docs.css" />
+    <link rel="stylesheet" href="/fonts.css" />
+    <link rel="stylesheet" href="/brand.css" />
+    <link rel="icon" href="/icon.svg" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header>
+      <a class="brand" href="./"
+        ><span class="brand-mark" aria-hidden="true"></span>ToolGraft</a
+      >
+      <nav aria-label="Website">
+        <a href="./docs.html">Documentation</a
+        ><a href="./registry.html">Adapters</a>
+      </nav>
+    </header>
+    <main>
+      <h1>Set up ToolGraft.</h1>
+      <p>
+        Your agent, connected to the websites you use. This local developer
+        preview needs Chrome 138+, Node 24+ and an agent on the same computer.
+        No ToolGraft account or model key.
+      </p>
+      <section id="connect-agent" aria-label="Connect your agent">
+        <div id="agent-setup"></div>
+      </section>
+      <p class="setup-help">
+        <a href="./docs.html#start">Installation walkthrough</a> ·
+        <a href="./docs.html#manual">Set up manually</a> ·
+        <a href="./docs.html#troubleshooting">Troubleshooting</a>
+      </p>
+      <details>
+        <summary>Install the extension yourself</summary>
+        <p>
+          Download the
+          <a href="./toolgraft-0.6.0-chrome.zip">local Chrome preview</a> and
+          unzip it. Open <code>chrome://extensions</code>, enable Developer
+          mode, choose Load unpacked and select the unzipped folder. In
+          ToolGraft’s Details, enable Allow User Scripts.
+        </p>
+        <p>
+          This is an unpacked local preview. A public release and Chrome Web
+          Store listing are not available yet.
+        </p>
+      </details>
+      <p>
+        Once connected, tell your agent which website to use and what you want
+        to do. You approve site access, adapter installations and writes in the
+        extension.
+      </p>
+      <p><a href="./docs.html#use">Learn how to use ToolGraft</a></p>
+    </main>
+    <script type="module" src="./agent-setup.ts"></script>
+    <footer>Particular Labs · MIT · No account required</footer>
+    <script type="module" src="./analytics.ts"></script>
+  </body>
+</html>

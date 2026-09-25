@@ -1,0 +1,151 @@
+{
+  "version": 1,
+  "domain": "reddit.com",
+  "urlPatterns": ["*://*.reddit.com/*"],
+  "title": "Reddit (JSON API)",
+  "description": "Read and write Reddit via its own JSON API: list subreddit posts, read threads, search, comment, and vote \u2014 executed as the logged-in user. Tier-1 API execution (no DOM selectors).",
+  "minEngine": 1,
+  "changelog": "`returns` projections are JMESPath, `extract`/`errorPath` are locator arrays, `sendAs` is {in, name}, and the modhash source caches for 300s instead of re-fetching before every write.",
+  "api": {
+    "baseUrl": "https://www.reddit.com",
+    "endpoints": {
+      "me": {
+        "method": "GET",
+        "path": "/api/me.json",
+        "returns": "data.{name: name, total_karma: total_karma, created_utc: created_utc}"
+      },
+      "subredditHot": {
+        "method": "GET",
+        "path": "/r/{{subreddit}}/hot.json",
+        "query": {
+          "limit": "{{limit}}",
+          "raw_json": "1"
+        },
+        "returns": "data.children[].data.{id: id, name: name, title: title, author: author, score: score, num_comments: num_comments, permalink: permalink, url: url, created_utc: created_utc}"
+      },
+      "search": {
+        "method": "GET",
+        "path": "/search.json",
+        "query": {
+          "q": "{{query}}",
+          "type": "link",
+          "sort": "relevance",
+          "limit": "{{limit}}",
+          "raw_json": "1"
+        },
+        "returns": "data.children[].data.{id: id, name: name, subreddit: subreddit, title: title, author: author, score: score, num_comments: num_comments, permalink: permalink, created_utc: created_utc}"
+      },
+      "thread": {
+        "method": "GET",
+        "path": "/comments/{{postId}}.json",
+        "query": {
+          "limit": "{{limit}}",
+          "depth": "{{depth}}",
+          "sort": "top",
+          "raw_json": "1"
+        },
+        "returns": "[1].data.children[].data.{id: id, name: name, author: author, score: score, body: body, created_utc: created_utc}"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "reddit_me",
+      "description": "Get the logged-in Reddit user's username and total karma. Proves the session works; write tools need a logged-in session.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true
+      },
+      "execution": {
+        "mode": "api",
+        "endpoint": "me"
+      }
+    },
+    {
+      "name": "reddit_subreddit_hot",
+      "description": "List the current hot posts in a subreddit: title, author, score, comment count, permalink, and fullname (use with reddit_comment/reddit_vote).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "subreddit": {
+            "type": "string",
+            "description": "Subreddit name, without the r/ prefix"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Max posts to return (1-25)"
+          }
+        },
+        "required": ["subreddit", "limit"],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true
+      },
+      "execution": {
+        "mode": "api",
+        "endpoint": "subredditHot"
+      }
+    },
+    {
+      "name": "reddit_search",
+      "description": "Search all of Reddit for posts matching a query, ranked by relevance: title, subreddit, author, score, comment count, permalink, and fullname.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Max posts to return (1-25)"
+          }
+        },
+        "required": ["query", "limit"],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true
+      },
+      "execution": {
+        "mode": "api",
+        "endpoint": "search"
+      }
+    },
+    {
+      "name": "reddit_read_thread",
+      "description": "Read the top comments of a Reddit post: author, score, and body per comment. Take the post ID from a permalink (/comments/<id>/).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "postId": {
+            "type": "string",
+            "description": "Base36 post ID from the URL, e.g. 1abc2de (no t3_ prefix)"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Max top-level comments (1-25)"
+          },
+          "depth": {
+            "type": "integer",
+            "description": "Reply nesting depth to include (1-10)"
+          }
+        },
+        "required": ["postId", "limit", "depth"],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true
+      },
+      "execution": {
+        "mode": "api",
+        "endpoint": "thread"
+      }
+    }
+  ]
+}

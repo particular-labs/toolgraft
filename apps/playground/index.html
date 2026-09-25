@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ToolGraft playground</title>
+    <link rel="stylesheet" href="/fonts.css" />
+    <link rel="stylesheet" href="/brand.css" />
+    <link rel="icon" href="/icon.svg" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header>
+      <a class="brand" href="https://particular-labs.github.io/toolgraft/"
+        ><span class="brand-mark" aria-hidden="true"></span>ToolGraft</a
+      ><span>Playground · synthetic data</span>
+    </header>
+    <main>
+      <h1>A place to try your tools.</h1>
+      <p>
+        Read tasks, create one, and approve a change. Everything here is
+        disposable.
+      </p>
+      <nav aria-label="Playground routes">
+        <a href="/tasks" data-route>Tasks</a
+        ><a href="/about" data-route>About</a>
+      </nav>
+      <section id="tasks-view">
+        <div class="toolbar">
+          <h2>Tasks</h2>
+          <button id="session">Sign out of demo</button>
+        </div>
+        <form id="create">
+          <label for="title">New task</label>
+          <div>
+            <input
+              id="title"
+              name="title"
+              required
+              maxlength="200"
+              placeholder="What would you like to try?"
+            /><button>Add task</button>
+          </div>
+        </form>
+        <p id="message" role="status"></p>
+        <ul id="tasks" aria-label="Tasks"></ul>
+        <button id="reset">Reset demo data</button>
+      </section>
+      <section id="about-view" hidden>
+        <h2>Tools follow you.</h2>
+        <p>
+          The task tools unregister on this route. Go back to Tasks to register
+          them again.
+        </p>
+      </section>
+      <details>
+        <summary>Failure scenarios</summary>
+        <p>
+          <a href="/tasks?shape=broken">Changed markup</a> ·
+          <a href="/tasks?empty=1">Empty list</a> ·
+          <a href="/tasks?delay=1500">Delayed rendering</a>
+        </p>
+      </details>
+    </main>
+    <script type="module" src="/main.ts"></script>
+  </body>
+</html>

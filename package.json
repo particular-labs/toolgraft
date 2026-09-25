@@ -1,0 +1,64 @@
+{
+  "name": "toolgraft",
+  "version": "0.6.0",
+  "private": true,
+  "description": "Reviewed, versioned WebMCP adapters for the sites you use. A free, open-source project by Particular Labs.",
+  "license": "MIT",
+  "author": "Particular Labs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/particular-labs/toolgraft.git"
+  },
+  "type": "module",
+  "packageManager": "pnpm@10.14.0",
+  "engines": {
+    "node": ">=24.21.0 <25",
+    "pnpm": "10.14.0"
+  },
+  "scripts": {
+    "dev:web": "pnpm --filter @toolgraft/web dev",
+    "dev:extension": "pnpm --filter @toolgraft/extension dev",
+    "build": "pnpm docs:generate && pnpm --filter @particular-labs/toolgraft-mcp build && pnpm -r --filter !@particular-labs/toolgraft-mcp --if-present build",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "test": "vitest run",
+    "test:browser": "playwright test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "commits:check": "node scripts/check-commits.mts",
+    "check": "pnpm format:check && pnpm typecheck && pnpm adapters:build && pnpm test && pnpm build",
+    "toolgraft": "node --experimental-strip-types packages/cli/src/index.ts",
+    "dev:playground": "pnpm --filter @toolgraft/playground dev",
+    "adapters:build": "pnpm toolgraft build --all",
+    "registry:build": "pnpm toolgraft registry build",
+    "registry:verify": "pnpm toolgraft registry verify",
+    "release:pack": "node scripts/release.mts",
+    "test:live": "TG_LIVE=1 pnpm test:browser",
+    "dev:browser": "node scripts/dev-browser.mts",
+    "test:repro": "node scripts/check-reproducible.mts",
+    "agents:config": "node scripts/agent-config.mts",
+    "doctor:agent": "node scripts/doctor-agent.mts",
+    "mcp": "pnpm --filter @particular-labs/toolgraft-mcp start",
+    "docs:generate": "node scripts/generate-agent-docs.mts",
+    "brand:icons": "node scripts/generate-brand-icons.mts"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "1.30.1",
+    "@playwright/test": "1.63.0",
+    "@toolgraft/adapter-schema": "workspace:*",
+    "@toolgraft/adapter-sdk": "workspace:*",
+    "@toolgraft/api-engine": "workspace:*",
+    "@toolgraft/runtime-webmcp": "workspace:*",
+    "@types/chrome": "0.3.0",
+    "@types/node": "24.13.6",
+    "chrome-devtools-mcp": "1.10.1",
+    "esbuild": "0.28.2",
+    "prettier": "3.9.9",
+    "typescript": "5.9.3",
+    "vitest": "5.0.1"
+  },
+  "dependencies": {
+    "@toolgraft/agent-setup": "workspace:*",
+    "@toolgraft/agent-core": "workspace:*",
+    "@toolgraft/analytics": "workspace:*"
+  }
+}

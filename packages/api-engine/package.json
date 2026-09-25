@@ -1,0 +1,16 @@
+{
+  "name": "@toolgraft/api-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "exports": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@toolgraft/adapter-schema": "workspace:*",
+    "@webmcp-today/schema": "0.3.0",
+    "@webmcp-today/engine": "0.1.0"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "version": "0.1.0",
+  "license": "MIT",
+  "source": "https://github.com/particular-labs/toolgraft",
+  "compatibility": {
+    "minExtension": "0.1.0",
+    "minEngine": 1
+  },
+  "routeScoped": true,
+  "id": "community.hacker-news",
+  "title": "Hacker News front page",
+  "description": "Tools for Hacker News front page.",
+  "matches": ["https://news.ycombinator.com/*"],
+  "runtime": {
+    "kind": "script",
+    "world": "USER_SCRIPT",
+    "runAt": "document_idle",
+    "entry": "bundle.js"
+  },
+  "permissions": {
+    "hosts": ["https://news.ycombinator.com/*"],
+    "network": "same-origin",
+    "pageStorage": false
+  }
+}

@@ -1,0 +1,56 @@
+:root {
+  --ink: #0c0d0d;
+  --ink-2: #151716;
+  --surface: #171a17;
+  --paper: #f1f3ed;
+  --paper-2: #d9ddd4;
+  --muted: #b7beb4;
+  --marketing-muted: #9ca39b;
+  --line: #353c33;
+  --marketing-line: rgba(241, 243, 237, 0.15);
+  --green: #b8ff5a;
+  --green-2: #7adf36;
+  --green-hover: #c8ff82;
+  --blue: #9ab8ff;
+  --orange: #ffb65a;
+  --error: #ffb6a8;
+  --warning: #ffd08c;
+  --font-body: Manrope, system-ui, sans-serif;
+  --font-code: "DM Mono", ui-monospace, monospace;
+  --surface-light: radial-gradient(
+    ellipse at 90% 0%,
+    rgba(184, 255, 90, 0.065),
+    transparent 55%
+  );
+  --max: 1180px;
+}
+::selection {
+  background: var(--green);
+  color: var(--ink);
+}
+:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 4px;
+}
+html {
+  scrollbar-color: var(--line) var(--ink);
+}
+input,
+textarea {
+  caret-color: var(--green);
+}
+.noise {
+  position: fixed;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 20;
+  background-image: url("./texture.svg");
+}
+.brand-mark {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  background: url("./icon.svg") center / contain no-repeat;
+}

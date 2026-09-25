@@ -1,0 +1,73 @@
+.agent-setup input,
+.agent-setup select,
+.agent-setup button {
+  font: inherit;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px 14px;
+  background: var(--surface);
+  color: var(--paper);
+}
+.agent-setup input,
+.agent-setup select {
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  margin: 8px 0 16px;
+}
+.agent-setup button {
+  cursor: pointer;
+}
+.agent-setup button:hover {
+  border-color: var(--green);
+}
+.agent-setup button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+.agent-setup .setup-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.agent-setup .setup-actions button:first-child {
+  background: var(--green);
+  color: var(--ink);
+  font-weight: 650;
+}
+.agent-setup pre {
+  max-height: none;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+  font-size: 13px;
+}
+.agent-setup details {
+  margin: 16px 0;
+}
+.setup-steps {
+  padding-left: 24px;
+  margin: 20px 0 28px;
+}
+.setup-steps li {
+  margin: 12px 0;
+  padding-left: 4px;
+}
+#setup-prompt-status:empty {
+  display: none;
+}
+.agent-setup summary {
+  cursor: pointer;
+  min-height: 44px;
+  font-weight: 650;
+}
+.agent-setup .copy-status {
+  min-height: 26px;
+  color: var(--green);
+}
+.agent-setup .config-path {
+  font: 13px/1.6 var(--font-code);
+  color: var(--green);
+}

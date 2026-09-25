@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "version": "0.1.0",
+  "license": "MIT",
+  "source": "https://github.com/particular-labs/toolgraft",
+  "compatibility": {
+    "minExtension": "0.1.0",
+    "minEngine": 1
+  },
+  "routeScoped": true,
+  "id": "experimental.reddit",
+  "title": "Reddit (experimental, read only)",
+  "description": "Read the signed-in Reddit session and public threads. Best effort; no write tools.",
+  "matches": ["https://www.reddit.com/*"],
+  "runtime": {
+    "kind": "api",
+    "format": "webmcp-today@1",
+    "definition": "webmcp-package.json"
+  },
+  "permissions": {
+    "hosts": ["https://www.reddit.com/*"],
+    "network": "same-origin",
+    "pageStorage": false
+  }
+}

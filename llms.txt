@@ -1,0 +1,21 @@
+# ToolGraft
+
+> Free, open-source website adapters from Particular Labs. Bring your own agent;
+> ToolGraft provides no internal AI. This checkout is a local developer preview.
+
+## Start here
+
+- [Agent guide](docs/agent-guide.md): Current capabilities and how to choose the right workflow.
+- [Agent setup](docs/agent-setup.md): Current MCP configuration and actual external-model evidence.
+- [Authoring skill](skills/toolgraft-authoring/SKILL.md): Portable creation and repair instructions with explicit capability checks.
+- [Authoring](docs/authoring.md): Guided MCP creation/repair and optional CLI/package workflow.
+
+## Compatibility and product design
+
+- [Client compatibility](docs/agent-compatibility.md): Hermes, OpenClaw, Grok and local/cloud connection distinctions.
+- [Guided authoring design](docs/guided-authoring-design.md): Local guided authoring design and remaining acceptance cases.
+- [Authenticated sites and cloud](docs/authenticated-sites-and-cloud.md): Browser sessions, OAuth and remote transports.
+- [Project status](docs/project-status.md): Current capabilities, validation commands and limitations.
+
+Links are relative to this repository. No public website publication or automatic
+client discovery of this file is claimed.

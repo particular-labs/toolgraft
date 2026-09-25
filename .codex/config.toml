@@ -1,0 +1,5 @@
+[mcp_servers.toolgraft]
+command = "npx"
+args = ["-y","--package=./packages/brand/assets/toolgraft-mcp-0.6.0.tgz","toolgraft-mcp"]
+startup_timeout_sec = 120
+tool_timeout_sec = 150

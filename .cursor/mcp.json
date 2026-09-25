@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "toolgraft": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "--package=./packages/brand/assets/toolgraft-mcp-0.6.0.tgz",
+        "toolgraft-mcp"
+      ]
+    }
+  }
+}

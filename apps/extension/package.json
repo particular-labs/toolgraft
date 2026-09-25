@@ -1,0 +1,27 @@
+{
+  "name": "@toolgraft/extension",
+  "version": "0.6.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "wxt",
+    "build": "wxt build",
+    "zip": "wxt zip",
+    "typecheck": "wxt prepare && tsc --noEmit",
+    "postinstall": "wxt prepare"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "wxt": "0.21.4"
+  },
+  "dependencies": {
+    "@toolgraft/agent-core": "workspace:*",
+    "@toolgraft/adapter-schema": "workspace:*",
+    "@toolgraft/api-engine": "workspace:*",
+    "@toolgraft/adapter-sdk": "workspace:*",
+    "@toolgraft/runtime-webmcp": "workspace:*",
+    "@toolgraft/agent-setup": "workspace:*",
+    "@toolgraft/analytics": "workspace:*"
+  }
+}

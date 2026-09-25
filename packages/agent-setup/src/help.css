@@ -1,0 +1,144 @@
+.help-shell {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  align-items: start;
+  gap: 64px;
+  max-width: 1200px;
+  margin: auto;
+}
+.help-sidebar {
+  position: sticky;
+  top: 24px;
+}
+.help-sidebar h2 {
+  font-size: 15px;
+  margin: 0 0 16px;
+  color: var(--paper);
+}
+.help-sidebar nav a {
+  display: block;
+  padding: 10px 12px;
+  margin: 2px 0;
+  color: var(--muted);
+  text-decoration: none;
+  border-radius: 6px;
+  line-height: 1.5;
+}
+.help-sidebar nav a:hover {
+  color: var(--paper);
+  background: var(--surface);
+}
+.help-sidebar nav a[aria-current="page"] {
+  color: var(--green);
+  background: var(--surface);
+  font-weight: 650;
+}
+.help-menu-toggle {
+  display: none;
+}
+.help-article {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  max-width: 74ch;
+}
+.help-article h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  margin: 0 0 20px;
+}
+.help-article h2 {
+  margin: 36px 0 12px;
+  font-size: 1.25rem;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+.help-article p,
+.help-article li {
+  max-width: none;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.help-article .help-intro {
+  font-size: 1.1rem;
+  color: var(--paper);
+  margin-bottom: 32px;
+}
+.help-article ol {
+  padding-left: 24px;
+}
+.help-article li {
+  padding-left: 6px;
+  margin: 12px 0;
+}
+.help-article blockquote {
+  margin: 16px 0;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--paper);
+}
+.help-article a,
+.help-article code,
+.help-article pre {
+  overflow-wrap: anywhere;
+}
+.help-next {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.help-meta {
+  font-size: 13px;
+}
+.help-skip {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  transform: translateY(-200%);
+  background: var(--ink);
+  padding: 12px;
+  z-index: 10;
+}
+.help-skip:focus {
+  transform: none;
+}
+.help-shell :focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 4px;
+}
+.help-shell h1:focus {
+  outline: none;
+}
+@media (max-width: 800px) {
+  .help-shell {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+  .help-sidebar {
+    position: static;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 16px;
+  }
+  .help-menu-toggle {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    background: var(--surface);
+    color: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+  .help-sidebar nav {
+    display: none;
+    margin-top: 16px;
+  }
+  .help-sidebar.is-open nav {
+    display: block;
+  }
+}

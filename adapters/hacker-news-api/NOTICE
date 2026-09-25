@@ -1,0 +1,3 @@
+Hacker News API package derived from WebMCP Today, Copyright (c) 2026 Robert Niimi.
+Source: https://github.com/robertn702/webmcp-today/blob/c65a11a59b4a921d6262f60b7a2fea7892a395d3/packages/curated-packages/data/news.ycombinator.com.json
+MIT licensed. ToolGraft selects hn_get_item and hn_list_children unchanged, removes unused write/auth endpoints, and adds untrustedContentHint to the install descriptors. The API execution definitions are unchanged.

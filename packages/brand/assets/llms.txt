@@ -1,0 +1,7 @@
+# ToolGraft
+
+Free, open-source website tools by Particular Labs. No internal AI.
+
+- [Agent instructions](./agent-instructions.md): connect, create, approve, verify and repair.
+- [Setup](./get-started.html): install the extension and one local MCP package.
+- [Guide](./agent-guide.html): workflow and current limitations.

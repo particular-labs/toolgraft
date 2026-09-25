@@ -1,0 +1,20 @@
+{
+  "name": "@toolgraft/adapter-schema",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    ".": "./src/index.ts",
+    "./archive": "./src/archive.ts",
+    "./runtime": "./src/runtime.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "4.6.5",
+    "@webmcp-today/schema": "0.3.0",
+    "fflate": "0.8.3"
+  }
+}

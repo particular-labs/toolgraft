@@ -1,0 +1,610 @@
+h1,
+h2,
+h3,
+.brand {
+  font-family: var(--font-body);
+}
+.agent-pairing {
+  margin: 40px 0;
+  padding: 32px 0;
+  border-block: 1px solid var(--line);
+}
+.agent-pairing h2 {
+  margin-top: 0;
+}
+.agent-pairing form,
+.connection-troubleshooting form {
+  max-width: 540px;
+}
+.agent-pairing input,
+.connection-troubleshooting input {
+  width: 100%;
+  min-width: 0;
+  font-family: var(--font-code);
+}
+#pairing-code {
+  font-size: 26px;
+  letter-spacing: 0.14em;
+  padding: 12px 16px;
+}
+.agent-pairing button,
+.connection-troubleshooting button {
+  margin: 16px 12px 0 0;
+}
+details {
+  margin: 24px 0;
+}
+summary {
+  cursor: pointer;
+  padding: 12px 0;
+  font-weight: 650;
+}
+.agent-guide li {
+  padding: 6px 0;
+  color: var(--muted);
+}
+.site-origin {
+  font-family: var(--font-code);
+  color: var(--green);
+  overflow-wrap: anywhere;
+}
+.tool-review {
+  list-style: none;
+  padding: 0;
+}
+.tool-review li {
+  border-top: 1px solid var(--line);
+  padding: 18px 0;
+}
+.tool-review strong {
+  font-family: var(--font-code);
+  font-size: 14px;
+}
+.badge {
+  display: inline-block;
+  margin-left: 12px;
+  color: var(--green);
+  font-size: 12px;
+}
+body[data-view="agent"] main {
+  max-width: 800px;
+}
+:root {
+  color-scheme: dark;
+  background: var(--ink);
+  color: var(--paper);
+  font: 15px/1.6 var(--font-body);
+}
+* {
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+p,
+li,
+dt,
+dd,
+a,
+summary,
+strong,
+button {
+  overflow-wrap: anywhere;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--surface-light), var(--ink);
+}
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 32px 28px 64px;
+}
+body[data-view="popup"] {
+  width: 380px;
+  max-width: 100vw;
+}
+body[data-view="popup"] main {
+  padding: 24px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 750;
+  text-decoration: none;
+  margin-bottom: 36px;
+}
+.mark {
+  width: 22px;
+  height: 22px;
+  color: var(--green);
+}
+h1 {
+  font-size: 30px;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin: 0 0 16px;
+}
+h2 {
+  font-size: 20px;
+  margin: 36px 0 16px;
+}
+h3 {
+  font-size: 17px;
+  margin: 0 0 8px;
+}
+p {
+  color: var(--muted);
+  margin: 8px 0 16px;
+  max-width: 70ch;
+}
+a {
+  color: var(--paper);
+  text-underline-offset: 4px;
+}
+button,
+input,
+select {
+  font: inherit;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--paper);
+  padding: 10px 16px;
+}
+button {
+  cursor: pointer;
+}
+button:hover {
+  border-color: var(--green);
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+button.primary {
+  background: var(--green);
+  color: var(--ink);
+  font-weight: 700;
+  border-color: var(--green);
+}
+button.danger {
+  color: var(--error);
+}
+input[type="file"] {
+  width: 100%;
+  padding: 14px;
+}
+label {
+  display: block;
+  margin: 16px 0 8px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.entry {
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+}
+.meta {
+  font-size: 13px;
+  color: var(--muted);
+}
+code,
+pre {
+  font: 12px/1.7 var(--font-code);
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+pre {
+  background: var(--surface);
+  border-radius: 6px;
+  padding: 16px;
+  max-height: 240px;
+  overflow: auto;
+}
+.status {
+  padding: 12px 0;
+  color: var(--green);
+  border-block: 1px solid var(--line);
+  margin: 20px 0;
+  max-width: none;
+  width: 100%;
+}
+.error {
+  color: var(--error);
+}
+.warning {
+  color: var(--warning);
+}
+ul {
+  padding-left: 20px;
+}
+li {
+  margin: 8px 0;
+}
+.tools li span {
+  color: var(--muted);
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: baseline;
+}
+.empty {
+  padding: 24px 0;
+}
+.hash {
+  font-size: 11px;
+}
+dialog {
+  max-width: 720px;
+  width: calc(100% - 32px);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 28px;
+}
+dialog::backdrop {
+  background: #000b;
+}
+::selection {
+  background: var(--green);
+  color: var(--ink);
+}
+:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 4px;
+}
+[hidden] {
+  display: none !important;
+}
+@media (max-width: 520px) {
+  main {
+    padding: 24px 20px;
+  }
+  h1 {
+    font-size: 27px;
+  }
+  .row {
+    flex-wrap: wrap;
+  }
+  .actions button {
+    flex: 1;
+  }
+  dialog {
+    padding: 20px;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  dialog[open] {
+    animation: appear 0.16s ease-out;
+  }
+  @keyframes appear {
+    from {
+      transform: translateY(6px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+}
+
+.version-list {
+  list-style: none;
+  padding: 0;
+}
+.version-list > li {
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+}
+.version-list strong {
+  font-family: var(--font-code);
+  font-variant-numeric: tabular-nums;
+}
+.version-list details {
+  margin: 8px 0;
+}
+.version-list summary {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+}
+.version-list button {
+  max-width: 100%;
+  white-space: normal;
+}
+
+.version-list button:disabled {
+  cursor: not-allowed;
+}
+.meta {
+  overflow-wrap: anywhere;
+}
+.hash {
+  display: block;
+}
+.version-change {
+  margin: 24px 0;
+}
+
+.connected-agent {
+  padding-block: 16px;
+  border-block-end: 1px solid var(--line);
+  overflow-wrap: anywhere;
+}
+.connected-agent h3 {
+  margin: 0;
+}
+.connected-agent p {
+  margin-block: 8px;
+}
+
+/* Trial results must remain readable at popup and narrow review widths. */
+.trial-review dd {
+  margin-inline-start: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Compact control center and a full-width library share the existing brand. */
+body[data-view="popup"] {
+  width: 560px;
+  min-height: 0;
+}
+body[data-view="popup"] main {
+  padding: 22px;
+  max-height: var(--popup-max-height, min(600px, 100dvh));
+  overflow-y: auto;
+}
+body[data-view="popup"] main:has(.tab-panel) {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+body[data-view="popup"] main > :not(.tab-panel) {
+  flex-shrink: 0;
+}
+body[data-view="popup"] .brand {
+  align-self: flex-start;
+}
+body[data-view="popup"] .brand {
+  margin-bottom: 12px;
+}
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+body[data-view="popup"] .popup-header .brand,
+.popup-header .full-view {
+  margin: 0;
+}
+body[data-view="popup"] h1 {
+  font-size: 24px;
+}
+body[data-view="options"] main {
+  max-width: 1200px;
+}
+body[data-view="connect"] main {
+  max-width: 860px;
+}
+body[data-view="connect"],
+body[data-view="help"] {
+  font: inherit;
+}
+body[data-view="help"] main {
+  max-width: 1200px;
+}
+.extension-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: 28px 0;
+}
+.connect-flow .agent-pairing {
+  margin: 24px 0;
+  padding: 0;
+  border: 0;
+}
+.agent-pairing .status {
+  color: var(--muted);
+}
+.agent-pairing .status.is-connected {
+  color: var(--green);
+}
+.connection-troubleshooting {
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+  margin-top: 32px;
+}
+.connect-flow > button {
+  margin-bottom: 24px;
+}
+[hidden] {
+  display: none !important;
+}
+.full-view {
+  display: block;
+  width: fit-content;
+  margin: 0 0 20px auto;
+  font-size: 13px;
+}
+.panel-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--line);
+  margin: 24px 0;
+}
+.panel-tabs button {
+  flex: 1;
+  border: 0;
+  border-radius: 6px 6px 0 0;
+  background: transparent;
+  color: var(--muted);
+  padding-inline: 8px;
+}
+.panel-tabs button[aria-selected="true"] {
+  color: var(--paper);
+  background: var(--surface);
+  box-shadow: inset 0 -2px var(--green);
+}
+.tab-panel {
+  min-width: 0;
+}
+body[data-view="popup"] .tab-panel {
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 4px;
+  scrollbar-gutter: stable;
+}
+body[data-view="popup"] .agent-pairing {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+body[data-view="popup"] .agent-pairing h2 {
+  font-size: 24px;
+}
+body[data-view="popup"] .connected-agent h3 {
+  font-size: 17px;
+}
+body[data-view="popup"] .connected-agent {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 12px;
+  padding-block: 16px;
+}
+body[data-view="popup"] .connected-agent h3 {
+  overflow-wrap: anywhere;
+}
+body[data-view="popup"] .connected-agent p {
+  grid-column: 1;
+}
+body[data-view="popup"] .connected-agent button {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  margin: 0;
+  align-self: center;
+}
+.library-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 24px 0 12px;
+}
+.library-filters input {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+.library-filters select {
+  flex: 0 1 220px;
+  min-width: 0;
+}
+.adapter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 20px;
+  align-items: start;
+}
+.adapter-card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  background: var(--surface);
+  min-width: 0;
+}
+.adapter-heading {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.adapter-heading h3 {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.adapter-monogram {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 22px;
+  font-weight: 750;
+  color: var(--green);
+}
+.adapter-card p,
+.adapter-card li {
+  overflow-wrap: anywhere;
+}
+.adapter-state {
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 700;
+}
+.adapter-state.warning {
+  color: var(--warning);
+}
+.adapter-card details {
+  margin: 0;
+}
+.adapter-card summary {
+  font-size: 13px;
+}
+.adapter-card button {
+  max-width: 100%;
+  white-space: normal;
+}
+.compact-adapter {
+  border-bottom: 1px solid var(--line);
+  padding: 10px 0;
+}
+.compact-adapter p {
+  margin: 4px 0 0;
+}
+.compact-adapter h2 {
+  margin: 0;
+  font-size: 16px;
+}
+.compact-adapters + a {
+  display: inline-block;
+  margin-block: 20px;
+}
+.tab-panel input[type="search"] {
+  width: 100%;
+}
+.connection-links {
+  margin-block: 28px;
+  padding-block: 20px;
+  border-top: 1px solid var(--line);
+}
+input,
+select {
+  caret-color: var(--green);
+}
+* {
+  scrollbar-color: var(--line) var(--ink);
+  scrollbar-width: thin;
+}
+@media (max-width: 520px) {
+  .adapter-card {
+    padding: 20px;
+  }
+  .library-filters select {
+    flex-basis: 100%;
+  }
+}

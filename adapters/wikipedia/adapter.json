@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "version": "0.1.1",
+  "license": "MIT",
+  "source": "https://github.com/particular-labs/toolgraft",
+  "compatibility": {
+    "minExtension": "0.1.0",
+    "minEngine": 1
+  },
+  "routeScoped": true,
+  "id": "community.wikipedia",
+  "title": "Wikipedia",
+  "description": "Tools for Wikipedia.",
+  "matches": [
+    "https://en.wikipedia.org/wiki/*",
+    "https://en.wikipedia.org/w/*"
+  ],
+  "runtime": {
+    "kind": "script",
+    "world": "USER_SCRIPT",
+    "runAt": "document_idle",
+    "entry": "bundle.js"
+  },
+  "permissions": {
+    "hosts": ["https://en.wikipedia.org/*"],
+    "network": "same-origin",
+    "pageStorage": false
+  }
+}

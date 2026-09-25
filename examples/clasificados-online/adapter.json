@@ -1,0 +1,33 @@
+{
+  "id": "local.clasificados-online",
+  "version": "0.1.0",
+  "title": "ClasificadosOnline keyword search",
+  "description": "Search Puerto Rico classifieds across all categories without browsing the listings UI. Local experimental adapter; no public source review.",
+  "url": "https://www.clasificadosonline.com/ss/dmclisting.asp?keyword=casa&SecID=PR&pueblo=%25",
+  "tools": [
+    {
+      "name": "search_classifieds",
+      "description": "Search ClasificadosOnline Puerto Rico across all categories by keyword. Returns up to 30 listings, prices when present, towns, seller names, URLs and category facets. Use page for more results, or a returned category id to narrow. Read only; no contacting sellers or posting ads.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "keyword": {
+            "type": "string",
+            "description": "Search phrase, 1–120 characters, e.g. Toyota, apartamento, electricista."
+          },
+          "page": {
+            "type": "number",
+            "description": "Page number, 1–100. Default 1. Each page contains up to 30 listings."
+          },
+          "category": {
+            "type": "string",
+            "description": "PR searches all categories (default). To narrow, use an id returned in categories."
+          }
+        },
+        "required": ["keyword"],
+        "additionalProperties": false
+      },
+      "annotations": { "readOnlyHint": true, "untrustedContentHint": true }
+    }
+  ]
+}

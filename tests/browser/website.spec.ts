@@ -25,9 +25,11 @@ test("homepage demo, clipboard recovery, keyboard semantics, and responsive layo
     .getByRole("button", { name: "Run mail.create_draft", exact: true })
     .click();
   await expect(page.locator("#runStatus")).toHaveText("draft saved");
-  await page.locator("#copyCommand").click();
-  await expect(page.locator("#copyCommand")).toHaveText("Copied");
-  await expect(page.locator("#copyCommand")).toHaveText("Copy");
+  for (const link of await page
+    .getByRole("link", { name: "Get started", exact: true })
+    .all())
+    await expect(link).toHaveAttribute("href", "./get-started.html");
+  await expect(page.getByText("We're building")).toHaveCount(0);
   expect(errors).toEqual([]);
   for (const [name, width, height] of [
     ["desktop", 1440, 1000],

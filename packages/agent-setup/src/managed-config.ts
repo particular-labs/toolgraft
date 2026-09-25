@@ -24,3 +24,12 @@ export function managedJson(packagePath?: string) {
 export function managedCodex(packagePath?: string) {
   return `[mcp_servers.toolgraft]\ncommand = "npx"\nargs = ${JSON.stringify(managedServer(packagePath).args)}\nstartup_timeout_sec = 120\ntool_timeout_sec = 150\n`;
 }
+const launch = () => `npx ${managedServer().args.join(" ")}`;
+/** One-line installs for clients with an `mcp add` CLI; others merge managedJson(). */
+export const cliInstalls = () => [
+  {
+    client: "Claude Code",
+    command: `claude mcp add --scope user toolgraft -- ${launch()}`,
+  },
+  { client: "Codex", command: `codex mcp add toolgraft -- ${launch()}` },
+];

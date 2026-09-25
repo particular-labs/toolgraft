@@ -64,6 +64,9 @@ await writeFile(
       description: source.description,
       type: "module",
       license: "MIT",
+      // npm trusted publishing requires this to match the publishing repository.
+      repository: source.repository,
+      homepage: source.homepage,
       bin: { "toolgraft-mcp": "index.js" },
       engines: source.engines,
       dependencies: Object.fromEntries(

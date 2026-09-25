@@ -46,6 +46,25 @@ immutable paths. Revocations can change with a newer updatedAt timestamp; they m
 not trigger automatic package updates. The live read-only canary workflow can be
 scheduled after launch; failures require investigation, never automatic publishing.
 
+## npm and GitHub releases
+
+The MCP package publishes as `@particular-labs/toolgraft-mcp` from `.github/workflows/release.yml`.
+A pushed `v*` tag is the release decision: the workflow checks the tag matches the package
+version, runs the full gate and package test, publishes to npm with trusted publishing
+(OIDC, automatic provenance, no stored token), attaches the extension ZIP, MCP archive and
+checksums to a GitHub prerelease, and redeploys the website.
+
+```sh
+pnpm release:version 0.7.0   # bump every version site, regenerate agent docs
+git commit -am "chore: release 0.7.0" && git push
+git tag v0.7.0 && git push origin v0.7.0
+```
+
+One-time setup: publish the first version manually after `npm login`
+(`pnpm --filter @particular-labs/toolgraft-mcp build && npm publish packages/mcp/dist --access public`),
+then add a trusted publisher on npmjs.com for repository `particular-labs/toolgraft`
+and workflow `release.yml`.
+
 ## Chrome Web Store candidate
 
 Single purpose: let users explicitly install pinned site adapters that expose

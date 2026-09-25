@@ -4,6 +4,12 @@
   "description": "Local agent tools for creating and using ToolGraft website adapters",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/particular-labs/toolgraft.git",
+    "directory": "packages/mcp"
+  },
+  "homepage": "https://particular-labs.github.io/toolgraft/",
   "bin": {
     "toolgraft-mcp": "dist/index.js"
   },

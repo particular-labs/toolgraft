@@ -2,6 +2,8 @@
 
 - release.mts assembles the audited extension, static site/registry, playground,
   licenses, adapter packages and checksums under dist/release/.
+- set-version.mts (`pnpm release:version <x.y.z>`) moves every product version
+  site in lockstep and regenerates agent docs; it refuses if a site has drifted.
 - check-immutable.mts rejects changes/deletions of published package paths against
   IMMUTABLE_BASE; CI uses the PR base or previous push commit.
 - dev-browser.mts launches the real extension in a dedicated Chrome profile with

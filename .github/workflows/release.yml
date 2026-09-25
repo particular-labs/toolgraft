@@ -1,6 +1,6 @@
 name: Release
 # Pushing a v* tag is the explicit release decision. npm uses trusted publishing
-# (OIDC), so no npm token is stored in this repository.
+# (OIDC), so no npm token is stored in this repository; npm releases are staged.
 on:
   push:
     tags: ["v*"]
@@ -34,8 +34,11 @@ jobs:
       - run: pnpm check && pnpm test:browser && pnpm registry:verify
       - run: node scripts/test-mcp-package.mts
       - run: pnpm release:pack
-      - name: Publish MCP package to npm
-        run: npm publish packages/mcp/dist --access public
+      # The trusted publisher is stage-only: a maintainer approves each release with
+      # 2FA (npm stage approve <id>) before it becomes public.
+      - name: Stage MCP package on npm
+        working-directory: packages/mcp/dist
+        run: npm stage publish --access public --provenance
       - name: Create GitHub release
         env:
           GH_TOKEN: ${{ github.token }}

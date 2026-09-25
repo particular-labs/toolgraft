@@ -50,8 +50,8 @@ scheduled after launch; failures require investigation, never automatic publishi
 
 The MCP package publishes as `@particular-labs/toolgraft-mcp` from `.github/workflows/release.yml`.
 A pushed `v*` tag is the release decision: the workflow checks the tag matches the package
-version, runs the full gate and package test, publishes to npm with trusted publishing
-(OIDC, automatic provenance, no stored token), attaches the extension ZIP, MCP archive and
+version, runs the full gate and package test, stages the npm release with trusted
+publishing (OIDC, provenance, no stored token), attaches the extension ZIP, MCP archive and
 checksums to a GitHub prerelease, and redeploys the website.
 
 ```sh
@@ -60,9 +60,12 @@ git commit -am "chore: release 0.7.0" && git push
 git tag v0.7.0 && git push origin v0.7.0
 ```
 
+A staged version is not public until a maintainer runs `npm stage approve <stage-id>`
+(2FA); the stage ID is printed in the workflow log. Stolen CI credentials alone cannot ship.
+
 One-time setup: publish the first version manually after `npm login`
 (`pnpm --filter @particular-labs/toolgraft-mcp build && npm publish packages/mcp/dist --access public`),
-then add a trusted publisher on npmjs.com for repository `particular-labs/toolgraft`
+then add a stage-only trusted publisher on npmjs.com for repository `particular-labs/toolgraft`
 and workflow `release.yml`.
 
 ## Chrome Web Store candidate

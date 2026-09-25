@@ -32,7 +32,7 @@ export const helpTopics: HelpTopic[] = [
       },
       {
         title: "Connect your agent",
-        text: "On Get started, copy the setup instructions into your agent. It can download the single MCP package and configure it with your permission. You do not need a repository checkout, separate helper app or mandatory skill. Open the connection link it gives you and approve the agent in ToolGraft.",
+        text: "On Get started, copy the setup instructions into your agent. With your permission, it adds the ToolGraft MCP from npm to its settings; npx downloads it on first start. You do not need a repository checkout, separate helper app or mandatory skill. Open the connection link it gives you and approve the agent in ToolGraft.",
       },
       {
         title: "Try a real task",
@@ -196,7 +196,7 @@ export const helpTopics: HelpTopic[] = [
     sections: [
       {
         title: "My agent cannot see ToolGraft",
-        text: "After adding the MCP configuration, start a new agent session. Confirm Node 24+ is available to that client and that the package path is correct. Keep existing MCP servers when updating configuration. A browser extension alone does not add MCP tools to an agent.",
+        text: "After adding the MCP configuration, start a new agent session. Confirm Node 24+ and npx are available to that client; the first start needs internet access to download the pinned npm package. Keep existing MCP servers when updating configuration. A browser extension alone does not add MCP tools to an agent.",
       },
       {
         title: "The link opens, but nothing connects",
@@ -220,7 +220,7 @@ export const helpTopics: HelpTopic[] = [
     id: "manual",
     title: "Manual agent setup",
     intro:
-      "Use this only if your agent cannot configure its MCP connection for you. Download the package, select your client and merge the generated settings without replacing other servers.",
+      "Use this only if your agent cannot configure its MCP connection for you. Select your client and merge the generated settings without replacing other servers. The settings run the pinned npm package with npx.",
     sections: [],
   },
   {

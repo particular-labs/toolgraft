@@ -1,5 +1,5 @@
 import type { AnalyticsEvent } from "@toolgraft/analytics";
-import { managedServer, managedCodex, mcpArchive } from "./managed-config";
+import { managedServer, managedCodex, mcpPackage } from "./managed-config";
 import { GUIDE_VERSION, setupInstructions } from "@toolgraft/agent-core";
 function el<K extends keyof HTMLElementTagNameMap>(tag: K, text = "") {
   const e = document.createElement(tag);
@@ -13,7 +13,7 @@ export function renderManagedSetup(
   target.classList.add("agent-setup");
   target.append(el("h2", "Connect in three steps"));
   const prompt = setupInstructions({
-    packageLocation: new URL(mcpArchive, location.href).href,
+    packageSpec: mcpPackage,
     ...(location.protocol !== "chrome-extension:"
       ? {
           extensionLocation: new URL(
@@ -69,23 +69,12 @@ export function renderManualSetup(
   onEvent: (event: AnalyticsEvent) => void = () => {},
 ) {
   manual.classList.add("agent-setup");
-  const download = el("a", "Download the local MCP package");
-  download.href = "./" + mcpArchive;
-  download.download = mcpArchive;
-  download.onclick = () => onEvent("mcp_download");
   manual.append(
-    download,
     el(
       "p",
-      "Developer preview · Node 24 or newer required. Save the package, then enter its full path below. Your agent starts the MCP and its bundled bridge; no separate helper app is needed.",
+      `Node 24 or newer required. Your agent starts ${mcpPackage} from npm with npx; no download, package path or separate helper app is needed.`,
     ),
   );
-  const path = el("input");
-  path.id = "managed-package-path";
-  path.value = `/absolute/path/to/${mcpArchive}`;
-  path.spellcheck = false;
-  const pathLabel = el("label", "Downloaded package path");
-  pathLabel.htmlFor = path.id;
   const select = el("select");
   select.id = "managed-agent";
   for (const name of [
@@ -108,9 +97,9 @@ export function renderManualSetup(
   code.id = "managed-config";
   pre.append(code);
   function update() {
-    const server = managedServer(path.value);
+    const server = managedServer();
     if (select.value === "Codex") {
-      code.textContent = managedCodex(path.value);
+      code.textContent = managedCodex();
       help.textContent =
         "Merge into .codex/config.toml in your trusted project, then start a new session.";
     } else if (select.value === "Hermes") {
@@ -137,7 +126,6 @@ export function renderManualSetup(
           : "Merge into your client’s MCP settings (.mcp.json for Claude Code), preserving existing servers.";
     }
   }
-  path.oninput = update;
   select.onchange = update;
   update();
   const message = el("p");
@@ -156,8 +144,6 @@ export function renderManualSetup(
     }
   };
   manual.append(
-    pathLabel,
-    path,
     label,
     select,
     help,

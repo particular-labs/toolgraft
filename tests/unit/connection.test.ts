@@ -47,7 +47,7 @@ it("accepts only exact local invitation URLs and maps missing panel errors to ac
     "Site access was not granted.",
   );
   const prompt = setupInstructions({
-    packageLocation: "https://example.com/package.tgz",
+    packageSpec: "@particular-labs/toolgraft-mcp@9.9.9",
     guideLocation: "https://example.com/guide",
   });
   expect(prompt).toContain("obtain my permission");
@@ -56,6 +56,8 @@ it("accepts only exact local invitation URLs and maps missing panel errors to ac
   expect(prompt).toContain("reuse it and skip installation");
   expect(prompt).toContain("do not stop another agent");
   expect(prompt).toContain("another profile");
+  expect(prompt).toContain("-y and @particular-labs/toolgraft-mcp@9.9.9");
+  expect(prompt).not.toContain("--package=");
 });
 it("requires a private invitation, refuses replay and expiry, and cannot be paired by a webpage", async () => {
   const dir = await mkdtemp(join(tmpdir(), "tg-invite-"));

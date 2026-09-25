@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { EXTENSION_VERSION } from "../../packages/adapter-schema/src/index";
 test("homepage demo, clipboard recovery, keyboard semantics, and responsive layout", async ({
   page,
   context,
@@ -107,14 +108,14 @@ test("managed setup provides one downloadable MCP and shares the live agent guid
     .click();
   await page
     .getByLabel("Downloaded package path")
-    .fill("/Users/demo/Downloads/toolgraft-mcp-0.6.0.tgz");
+    .fill(`/Users/demo/Downloads/toolgraft-mcp-${EXTENSION_VERSION}.tgz`);
   await page
     .getByLabel("Agent client", { exact: true })
     .selectOption("Claude Code");
   const config = JSON.parse(await page.locator("#managed-config").innerText());
   expect(Object.keys(config.mcpServers)).toEqual(["toolgraft"]);
   expect(config.mcpServers.toolgraft.args).toContain(
-    "--package=/Users/demo/Downloads/toolgraft-mcp-0.6.0.tgz",
+    `--package=/Users/demo/Downloads/toolgraft-mcp-${EXTENSION_VERSION}.tgz`,
   );
   await page
     .getByRole("button", { name: "Copy ToolGraft configuration", exact: true })
@@ -123,7 +124,7 @@ test("managed setup provides one downloadable MCP and shares the live agent guid
     JSON.parse(await page.evaluate(() => navigator.clipboard.readText())),
   ).toEqual(config);
   const archive = await page.request.get(
-    "http://127.0.0.1:5273/toolgraft-mcp-0.6.0.tgz",
+    `http://127.0.0.1:5273/toolgraft-mcp-${EXTENSION_VERSION}.tgz`,
   );
   expect(archive.ok()).toBe(true);
   expect((await archive.body()).subarray(0, 2).toString("hex")).toBe("1f8b");
@@ -157,7 +158,9 @@ test("setup instructions copy the actual local download URLs and provide a clipb
     .getByRole("button", { name: "Copy setup instructions", exact: true })
     .click();
   const copied = await page.evaluate(() => navigator.clipboard.readText());
-  expect(copied).toContain("http://127.0.0.1:5273/toolgraft-mcp-0.6.0.tgz");
+  expect(copied).toContain(
+    `http://127.0.0.1:5273/toolgraft-mcp-${EXTENSION_VERSION}.tgz`,
+  );
   expect(copied).toContain("toolgraft_connect");
   expect(copied).toContain("obtain my permission");
   await page.evaluate(() =>

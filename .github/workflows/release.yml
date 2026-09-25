@@ -1,0 +1,49 @@
+name: Release
+# Pushing a v* tag is the explicit release decision. npm uses trusted publishing
+# (OIDC), so no npm token is stored in this repository.
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: read
+concurrency:
+  group: release
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write
+      id-token: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+      - name: Tag must match package version
+        run: |
+          version=$(node -p 'require("./packages/mcp/package.json").version')
+          test "v$version" = "$GITHUB_REF_NAME" || { echo "Tag $GITHUB_REF_NAME != v$version"; exit 1; }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm check && pnpm test:browser && pnpm registry:verify
+      - run: node scripts/test-mcp-package.mts
+      - run: pnpm release:pack
+      - name: Publish MCP package to npm
+        run: npm publish packages/mcp/dist --access public
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd dist/release
+          gh release create "$GITHUB_REF_NAME" --generate-notes --prerelease \
+            toolgraft-*-chrome.zip toolgraft-mcp-*.tgz SHA256SUMS.json
+      - name: Refresh website downloads
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref main

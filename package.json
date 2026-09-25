@@ -32,6 +32,7 @@
     "registry:build": "pnpm toolgraft registry build",
     "registry:verify": "pnpm toolgraft registry verify",
     "release:pack": "node scripts/release.mts",
+    "release:version": "node scripts/set-version.mts",
     "test:live": "TG_LIVE=1 pnpm test:browser",
     "dev:browser": "node scripts/dev-browser.mts",
     "test:repro": "node scripts/check-reproducible.mts",

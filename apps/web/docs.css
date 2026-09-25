@@ -140,3 +140,21 @@ body {
   opacity: 0.6;
   cursor: default;
 }
+
+.download-button {
+  display: inline-block;
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: 6px;
+  background: var(--green);
+  color: var(--ink);
+  font-weight: 650;
+  text-decoration: none;
+}
+.download-button:hover {
+  background: var(--green-hover);
+}
+.setup-note {
+  color: var(--muted);
+  font-size: 14px;
+}

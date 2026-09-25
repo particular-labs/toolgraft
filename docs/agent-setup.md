@@ -9,16 +9,18 @@ agent provider's data settings.
 
 ## Install and connect
 
-1. Load the unpacked extension from the local release's `extension/` directory in
-   Chrome's Developer mode. Enable **Allow User Scripts** in extension Details.
+1. Download the Chrome ZIP from the website's Get started page (or a GitHub
+   release), unzip it and load it unpacked in Chrome's Developer mode. Enable
+   **Allow User Scripts** in extension Details.
 2. Open **Connect your agent** in ToolGraft or the website's Get started page.
    Choose **Copy setup instructions** and paste them into your existing agent.
    The instructions ask it to obtain permission before changing local settings,
-   download the actual package, preserve existing MCP entries and verify startup.
-   **Set up manually** retains package download, path and client configuration.
-   Node 24+ must be on that agent's PATH. The package bundles the bridge, builder
-   and runtime; npm installs pinned dependencies. No separate helper or checkout
-   is needed.
+   add the version-pinned `@particular-labs/toolgraft-mcp` npm package (run with
+   `npx -y @particular-labs/toolgraft-mcp@<version>`), preserve existing MCP entries
+   and verify startup. **Set up manually** shows the same entry per client.
+   Node 24+ and npx must be on that agent's PATH; the first start downloads the
+   package. It bundles the bridge, builder and runtime. No separate helper or
+   checkout is needed.
 3. Restart the agent connection. Ask it to call `toolgraft_connect`, then open its
    private link in the browser where ToolGraft is installed. Click ToolGraft in
    the extensions menu and approve **Connect this agent**. The link expires after
@@ -69,10 +71,8 @@ old panels. Existing adapters remain installed. Legacy single-agent connections
 are retained as “Previous agent connection”; approve a fresh link from each updated
 agent, then disconnect the obsolete entry when no longer needed.
 
-Extension download links only work in the browser profile with ToolGraft. If an
-agent controls another browser, download the package from the extension and give
-it that local path, and open its connection link in the correct browser yourself.
-The shared copyable prompt now explicitly describes this fallback.
+If an agent controls a different browser profile, open its connection link in the
+profile with ToolGraft yourself. The shared copyable prompt describes this fallback.
 
 [Generated agent instructions](generated-agent-instructions.md) are sourced from
 `packages/agent-core`. The MCP help tool, extension, website and optional
@@ -83,7 +83,7 @@ Client configuration generation lives in `packages/agent-setup`.
 ## Updates and rollback
 
 The 0.3.0 package exposes `toolgraft_versions` and `toolgraft_request_version`.
-Restart the agent connection after changing its package path. Review and approve
+Restart the agent connection after changing its pinned package version. Review and approve
 updates or older versions in the extension, then verify the actual tool result.
 See [version history, offline behavior and storage migration](adapter-versions.md).
 

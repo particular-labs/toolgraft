@@ -97,37 +97,41 @@ test("agent setup supports selection, clipboard, download and mobile layout", as
   }
 });
 
-test("managed setup provides one downloadable MCP and shares the live agent guide", async ({
+test("setup offers the extension download, configures the pinned npm MCP and shares the live agent guide", async ({
   page,
   context,
 }) => {
   await context.grantPermissions(["clipboard-read", "clipboard-write"]);
   await page.goto("http://127.0.0.1:5273/get-started.html");
+  const extensionLink = page.getByRole("link", {
+    name: "Download ToolGraft for Chrome",
+    exact: true,
+  });
+  await expect(extensionLink).toBeVisible();
+  // The dev server has no ZIP; release.mts copies this exact name into the site.
+  await expect(extensionLink).toHaveAttribute(
+    "href",
+    `./toolgraft-${EXTENSION_VERSION}-chrome.zip`,
+  );
   await page
     .getByRole("link", { name: "Set up manually", exact: true })
     .click();
-  await page
-    .getByLabel("Downloaded package path")
-    .fill(`/Users/demo/Downloads/toolgraft-mcp-${EXTENSION_VERSION}.tgz`);
+  await expect(page.getByLabel("Downloaded package path")).toHaveCount(0);
   await page
     .getByLabel("Agent client", { exact: true })
     .selectOption("Claude Code");
   const config = JSON.parse(await page.locator("#managed-config").innerText());
   expect(Object.keys(config.mcpServers)).toEqual(["toolgraft"]);
-  expect(config.mcpServers.toolgraft.args).toContain(
-    `--package=/Users/demo/Downloads/toolgraft-mcp-${EXTENSION_VERSION}.tgz`,
-  );
+  expect(config.mcpServers.toolgraft).toEqual({
+    command: "npx",
+    args: ["-y", `@particular-labs/toolgraft-mcp@${EXTENSION_VERSION}`],
+  });
   await page
     .getByRole("button", { name: "Copy ToolGraft configuration", exact: true })
     .click();
   expect(
     JSON.parse(await page.evaluate(() => navigator.clipboard.readText())),
   ).toEqual(config);
-  const archive = await page.request.get(
-    `http://127.0.0.1:5273/toolgraft-mcp-${EXTENSION_VERSION}.tgz`,
-  );
-  expect(archive.ok()).toBe(true);
-  expect((await archive.body()).subarray(0, 2).toString("hex")).toBe("1f8b");
   await page.goto("http://127.0.0.1:5273/agent-guide.html");
   await expect(
     page.getByText(
@@ -148,7 +152,7 @@ test("managed setup provides one downloadable MCP and shares the live agent guid
   }
 });
 
-test("setup instructions copy the actual local download URLs and provide a clipboard fallback", async ({
+test("setup instructions copy the pinned npm package and extension URL and provide a clipboard fallback", async ({
   page,
   context,
 }) => {
@@ -159,8 +163,12 @@ test("setup instructions copy the actual local download URLs and provide a clipb
     .click();
   const copied = await page.evaluate(() => navigator.clipboard.readText());
   expect(copied).toContain(
-    `http://127.0.0.1:5273/toolgraft-mcp-${EXTENSION_VERSION}.tgz`,
+    `@particular-labs/toolgraft-mcp@${EXTENSION_VERSION}`,
   );
+  expect(copied).toContain(
+    `http://127.0.0.1:5273/toolgraft-${EXTENSION_VERSION}-chrome.zip`,
+  );
+  expect(copied).not.toContain(".tgz");
   expect(copied).toContain("toolgraft_connect");
   expect(copied).toContain("obtain my permission");
   await page.evaluate(() =>

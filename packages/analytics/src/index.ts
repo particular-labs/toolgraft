@@ -15,7 +15,6 @@ export const analyticsEvents = [
   "setup_instructions_copy_failed",
   "manual_config_copied",
   "manual_config_copy_failed",
-  "mcp_download",
   "extension_download",
   "manual_setup_opened",
   "connection_approved",

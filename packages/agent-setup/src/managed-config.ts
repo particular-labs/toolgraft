@@ -1,11 +1,15 @@
 import { GUIDE_VERSION } from "@toolgraft/agent-core";
 export const mcpArchive = `toolgraft-mcp-${GUIDE_VERSION}.tgz`;
-export function managedServer(
-  packagePath = `./packages/brand/assets/${mcpArchive}`,
-) {
+/** Pinned npm spec users run; the version moves with every release. */
+export const mcpPackage = `@particular-labs/toolgraft-mcp@${GUIDE_VERSION}`;
+/** Repository checkouts run the locally built archive instead of npm. */
+export const localDevPackage = `./packages/brand/assets/${mcpArchive}`;
+export function managedServer(packagePath?: string) {
   return {
     command: "npx",
-    args: ["-y", `--package=${packagePath}`, "toolgraft-mcp"],
+    args: packagePath
+      ? ["-y", `--package=${packagePath}`, "toolgraft-mcp"]
+      : ["-y", mcpPackage],
   };
 }
 export function managedJson(packagePath?: string) {

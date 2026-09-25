@@ -3,11 +3,12 @@ import { dirname } from "node:path";
 import {
   managedCodex as codexConfig,
   managedJson as jsonConfig,
+  localDevPackage,
 } from "@toolgraft/agent-setup/managed-config";
 for (const [path, contents] of [
-  [".codex/config.toml", codexConfig()],
-  [".mcp.json", jsonConfig()],
-  [".cursor/mcp.json", jsonConfig()],
+  [".codex/config.toml", codexConfig(localDevPackage)],
+  [".mcp.json", jsonConfig(localDevPackage)],
+  [".cursor/mcp.json", jsonConfig(localDevPackage)],
 ]) {
   let existing: string | undefined;
   try {
